@@ -1,5 +1,5 @@
 const { $, React, ReactDOM, 
-        ReactBootstrap: { Row, Grid, Panel, Button } } = window;
+        ReactBootstrap: { Row, Grid, Button } } = window;
 
 function OverviewApp() {
   const Header = () => {
