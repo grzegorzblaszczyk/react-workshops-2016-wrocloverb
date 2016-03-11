@@ -12,17 +12,19 @@ function OverviewApp() {
   };
 
   const ConferenceRow = ({id, name}) => {
-    return (
+    const contents = (
       <div className="panel panel-default">
-          <div className="panel-heading">
-              <div className="pull-right">
-                  <a href="/conferences/${id}"
-                     className="btn btn-primary btn-xs">Show</a>
-              </div>
-              <h3 className="panel-title">{name}</h3>
+        <div className="panel-heading">
+          <div className="pull-right">
+            <Button bsStyle="primary"
+                    bsSize="xs"
+                    href="/conferences/${id}">Show</Button>
           </div>
+          <h3 className="panel-title">{name}</h3>
+        </div>
       </div>
     );
+    return contents;
   };
   
   const Overview = () => {
