@@ -1,4 +1,4 @@
-const { $, React, ReactDOM, 
+const { $, React, ReactDOM, Redux, ReactRedux,
         ReactBootstrap: { Row, Grid, Button } } = window;
 
 function OverviewApp() {
@@ -27,19 +27,47 @@ function OverviewApp() {
     return contents;
   };
   
-  const Overview = () => {
+  const Overview = ({conferences}) => {
     return (<Grid>
               <Row>
                 <Header />
-                <ConferenceRow id="active-conference" name="wroc_love.rb 2016" />
-                <ConferenceRow id="past-conference" name="wroc_love.rb 2015" />
+                {conferences.map(({id, key, name}) => {
+                  return <ConferenceRow id={id} key={key} name={name} />;
+                })}
               </Row>
             </Grid>);
   };
 
+  const initialState = () => {
+    return [
+      { id: "active-conference", key: "wroc_love.rb-2016", name: "wroc_love.rb 2016" },
+      { id: "past-conference",   key: "wroc_love.rb-2015", name: "wroc_love.rb 2015" }
+    ];
+  };
+
+  // Reducer
+  const update = (state=initialState(), action) => {
+    return state;
+  };
+
+  //Store
+  let store = Redux.createStore(update, initialState());
+
+  const stateMapper = (state) => { 
+    return { conferences: state };
+  };
+
+  const dispatchMapper = (dispatch) => { return {}; };
+
+  const connector = ReactRedux.connect(stateMapper, dispatchMapper);
+
+  const ConnectedOverview = connector(Overview);
+
   return {
     ui() {
-      return <Overview/>;
+      return <ReactRedux.Provider store={store}>
+                <ConnectedOverview />
+              </ReactRedux.Provider>;
     }
   };
 }
