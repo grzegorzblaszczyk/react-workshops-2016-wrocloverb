@@ -40,8 +40,8 @@ function OverviewApp() {
 
   const initialState = () => {
     return [
-      { id: "active-conference", key: "wroc_love.rb-2016", name: "wroc_love.rb 2016" },
-      { id: "past-conference",   key: "wroc_love.rb-2015", name: "wroc_love.rb 2015" }
+      { id: UUID.create().toString(),   key: "wroc_love.rb-2016", name: "wroc_love.rb 2016" },
+      { id: UUID.create().toString(),   key: "wroc_love.rb-2015", name: "wroc_love.rb 2015" }
     ];
   };
 
