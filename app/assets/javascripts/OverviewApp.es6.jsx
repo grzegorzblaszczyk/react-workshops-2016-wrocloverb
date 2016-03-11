@@ -1,13 +1,14 @@
-const { $, React, ReactDOM } = window;
+const { $, React, ReactDOM, 
+        ReactBootstrap: { Row, Grid, Panel, Button } } = window;
 
 function OverviewApp() {
   const Header = () => {
     return (<h1>
-            <div className="pull-right">
-              <p><a href="/conferences" className="btn btn-primary">Detailed View</a></p>
-            </div>
-            Conferences
-          </h1>);
+              <div className="pull-right">
+                <p><Button href="/conferences" bsStyle="primary">Detailed View</Button></p>
+              </div>
+              Conferences
+            </h1>);
   };
 
   const ConferenceRow = ({id, name}) => {
@@ -25,13 +26,13 @@ function OverviewApp() {
   };
   
   const Overview = () => {
-    return (<div className="container">
-              <div className="row">
+    return (<Grid>
+              <Row>
                 <Header />
                 <ConferenceRow id="active-conference" name="wroc_love.rb 2016" />
                 <ConferenceRow id="past-conference" name="wroc_love.rb 2015" />
-              </div>
-            </div>);
+              </Row>
+            </Grid>);
   };
 
   return {
